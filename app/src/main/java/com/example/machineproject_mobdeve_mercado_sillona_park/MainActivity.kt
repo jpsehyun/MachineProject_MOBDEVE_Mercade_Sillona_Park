@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
 
 
     fun initializeUI() {
-        main_Course_Btn = findViewById(R.id.CV_AddCourse_Btn)
-        main_Schdule_Btn = findViewById(R.id.CV_Schedule_Btn)
+        main_Course_Btn = findViewById(R.id.main_Course_Btn)
+        main_Schdule_Btn = findViewById(R.id.main_Schedule_Btn)
     }
 
     fun initializeListener() {
