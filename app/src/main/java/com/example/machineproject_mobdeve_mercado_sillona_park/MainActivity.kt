@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import java.lang.IllegalArgumentException
 
 class MainActivity : AppCompatActivity() {
     private lateinit var main_Course_Btn: Button
@@ -18,18 +19,26 @@ class MainActivity : AppCompatActivity() {
 
 
     fun initializeUI() {
-        main_Course_Btn = findViewById(R.id.main_Course_Btn)
-        main_Schdule_Btn = findViewById(R.id.main_Schedule_Btn)
+        main_Course_Btn = findViewById(R.id.CV_AddCourse_Btn)
+        main_Schdule_Btn = findViewById(R.id.CV_Schedule_Btn)
     }
 
     fun initializeListener() {
+        main_Course_Btn.setOnClickListener {
+            loadNextScreen("course")
+        }
         main_Schdule_Btn.setOnClickListener {
-            loadNextScreen()
+            loadNextScreen("schedule")
         }
     }
 
-    private fun loadNextScreen() {
-        var intentLoadNextActivity = Intent(this, MondayActivity::class.java)
+    private fun loadNextScreen(destination: String) {
+        var intentLoadNextActivity = when (destination) {
+            "course" -> Intent(this, CourseViewActivity::class.java)
+            "schedule" -> Intent(this, MondayActivity::class.java)
+            else -> throw IllegalArgumentException("Invalid destination: $destination")
+
+        }
         startActivity(intentLoadNextActivity)
     }
 }
